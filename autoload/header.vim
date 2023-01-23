@@ -592,7 +592,7 @@ fun s:add_license_header(license_name)
     endif
 
 	if g:header_blank_line
-		call append(i, '')
+		call append(i - 1, '')
 		let i += 1
 	endif
 
