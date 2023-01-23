@@ -40,6 +40,10 @@ endif
 if !exists('g:header_alignment')
     let g:header_alignment = 1
 endif
+if !exists('g:header_blank_line')
+	" Add a blank line after the header, if set 1.
+	let g:header_blank_line = 0
+endif
 
 " Path for license files directory
 let s:license_files_dir = expand('<sfile>:p:h:h').'/licensefiles/'
@@ -356,6 +360,12 @@ fun s:add_header()
     if b:block_comment
         call append(i, b:comment_end)
     endif
+
+	if g:header_blank_line
+		let i += 1
+		call append(i, '')
+	endif
+
     call setpos(".", save_pos)
 endfun
 
@@ -493,6 +503,12 @@ fun s:add_min_header()
 
     " Add line to file
     call append(i, header_line)
+
+	if g:header_blank_line
+		let i += 1
+		call append(i, '')
+	endif
+
     call setpos(".", save_pos)
 endfun
 
@@ -574,6 +590,11 @@ fun s:add_license_header(license_name)
         call append(i - 1, b:comment_end)
         let i += 1
     endif
+
+	if g:header_blank_line
+		let i += 1
+		call append(i, '')
+	endif
 
     call setpos(".", save_pos)
 endfun
