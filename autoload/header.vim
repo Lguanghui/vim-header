@@ -592,8 +592,8 @@ fun s:add_license_header(license_name)
     endif
 
 	if g:header_blank_line
-		let i += 1
 		call append(i, '')
+		let i += 1
 	endif
 
     call setpos(".", save_pos)
